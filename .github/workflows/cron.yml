@@ -9,31 +9,26 @@ jobs:
   execute:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: setup python
-        uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: install python packages
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: execute py script
+      - name: Execute
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-          MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
-          MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
           MASTODON_MESSAGE_TEMPLATE: ${{ vars.MASTODON_MESSAGE_TEMPLATE }}
           READWISE_ACCESS_TOKEN: ${{ secrets.READWISE_ACCESS_TOKEN }}
+          PUBLISHED_IDS: ${{ vars.PUBLISHED_IDS }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python main.py
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
