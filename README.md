@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://cdn.pensieriincodice.it/images/pensieriincodice-locandina.png" alt="Logo Progetto" width="150"/>
-  <h1>Pensieri In Codice — News to Mastodon</h1>
+  <h1>Pensieri in codice — News to Mastodon</h1>
   <p>Pubblica automaticamente le news di PIC sull'account Mastodon del podcast, prelevandole da Readwise.</p>
   <p>
     <img src="https://img.shields.io/github/stars/valeriogalano/pensieriincodice-news-to-mastodon?style=for-the-badge" alt="GitHub Stars"/>
