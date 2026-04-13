@@ -24,32 +24,6 @@ def save_published_ids(published_documents: list) -> None:
     update_github_variable('PUBLISHED_IDS', json.dumps(published_documents))
 
 
-def escape_string(text_to_escape):
-    return text_to_escape # temporary solution, remove in future.
-    translate_table = str.maketrans({
-        '_': r'\_',
-        '*': r'\*',
-        '[': r'\[',
-        ']': r'\]',
-        '(': r'\(',
-        ')': r'\)',
-        '~': r'\~',
-        '`': r'\`',
-        '>': r'\>',
-        '#': r'\#',
-        '+': r'\+',
-        '-': r'\-',
-        '=': r'\=',
-        '|': r'\|',
-        '{': r'\{',
-        '}': r'\}',
-        '.': r'\.',
-        '!': r'\!'
-    })
-
-    return text_to_escape.translate(translate_table)
-
-
 def main():
     midnight_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     seven_days_ago = midnight_date - timedelta(days=7)
@@ -80,9 +54,9 @@ def main():
     logging.debug("Note: " + document['notes'])
     template_message = os.environ["MASTODON_MESSAGE_TEMPLATE"]
     message = template_message.format(
-                  title=escape_string(document['title']),
+                  title=document['title'],
                   link=document['source_url'],
-                  notes=escape_string(document['notes'])
+                  notes=document['notes']
               )
     try:
         mastodon.post(message)

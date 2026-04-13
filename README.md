@@ -30,7 +30,7 @@ Lo script interroga l'API di Readwise per recuperare le ultime news salvate, le 
 
 ## Variabili di ambiente
 
-Imposta le seguenti variabili nel tuo IDE o nel sistema operativo:
+Copia `.env.example` in `.env` e imposta i seguenti valori:
 
 ```
 MASTODON_TOKEN="<token di Mastodon>"
@@ -65,6 +65,9 @@ Esempio:
 ## Installazione e avvio
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+# .venv\Scripts\activate   # Windows
 pip install -r requirements.txt
 python main.py
 ```
